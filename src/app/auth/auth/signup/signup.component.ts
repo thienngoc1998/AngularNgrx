@@ -8,19 +8,21 @@ import {FormBuilder, FormGroup, NgForm, Validators} from "@angular/forms";
 })
 export class SignupComponent implements OnInit {
    ngForm: FormGroup;
-   submitted = false;
+   maxDate;
   constructor(
        private  formBuilder :FormBuilder
   ) { }
 
   ngOnInit() {
+      this.maxDate =new Date();
+      this.maxDate.setFullYear(this.maxDate.getFullYear()-21);
       this.ngForm = this.formBuilder.group({
-          email :['',Validators.required],
-          password :['',[Validators.required,Validators.minLength(6)]]
+          email :['',[Validators.required,Validators.email]],
+          password :['',[Validators.required,Validators.minLength(6)]],
+          birthDay :['',Validators.required],
       });
   }
   OnSummit(){
-      this.submitted = true;
       if (this.ngForm.invalid) {
           return;
       }

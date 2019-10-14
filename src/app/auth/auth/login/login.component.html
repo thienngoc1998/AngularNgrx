@@ -1,1 +1,17 @@
-<p>login works!</p>
+<section class="signup-form">
+    <form action="" fxLayout="column" fxLayoutAlign="center center" [formGroup]="ngForm"  (ngSubmit)="OnSummit()">
+        <mat-form-field appearance="outline">
+            <mat-label>Email</mat-label>
+            <input type="email" matInput  formControlName="email" >
+            <mat-error *ngIf="ngForm.controls.email.errors?.required"> Email is required</mat-error>
+            <mat-error *ngIf="ngForm.controls.email.errors?.email"> Invalid Email </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Password</mat-label>
+            <input type="password" matInput  formControlName="password">
+            <mat-error *ngIf="ngForm.controls.password.errors?.required"> Password is required</mat-error>
+            <mat-error *ngIf="ngForm.controls.password.errors?.minlength"> Password must be at least 6 characters</mat-error>
+        </mat-form-field>
+        <button type="submit" mat-raised-button color="primary" [disabled]="!ngForm.valid">Send</button>
+    </form>
+</section>
